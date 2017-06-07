@@ -1,0 +1,18 @@
+{
+  "name": "typescript-react-firebase-auth",
+  "version": "0.1.0",
+  "description": "React app with Firebase authentication using TypeScript ",
+  "main": "index.js",
+  "author": "Sriram Thiagarajan",
+  "license": "MIT",
+  "dependencies": {
+    "@types/firebase": "^2.4.31",
+    "@types/react": "^15.0.27",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-router": "^4.0.11",
+    "firebase": "^4.1.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1"
+  }
+}
