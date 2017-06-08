@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Sriram Thiagarajan",
   "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=dev node server.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack.production.js",
+    "clean": "rm -rf dist"
+  },
   "dependencies": {
     "firebase": "^4.1.1",
     "react": "^15.5.4",
