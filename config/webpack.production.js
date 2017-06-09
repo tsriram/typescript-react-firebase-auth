@@ -25,6 +25,13 @@ module.exports = {
         chunkFilename: '[id].chunk.js',
         publicPath: '/'
     },
+    resolve: {
+        modules: [
+            path.join(__dirname, 'src'),
+            'node_modules'
+        ],
+        extensions: ['.js', '.ts', '.tsx']
+    },
     module: {
         rules: [
             {

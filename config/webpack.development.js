@@ -21,6 +21,13 @@ module.exports = {
         chunkFilename: '[id].chunk.js',
         publicPath: '/'
     },
+    resolve: {
+        modules: [
+            path.join(__dirname, 'src'),
+            'node_modules'
+        ],
+        extensions: ['.js', '.ts', '.tsx']
+    },
     module: {
         rules: [
             {
@@ -44,6 +51,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'app/index.html',
