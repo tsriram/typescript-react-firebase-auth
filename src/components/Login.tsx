@@ -6,7 +6,7 @@ export default class Login extends React.PureComponent<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
             submittig: false,
             error: null
@@ -17,10 +17,10 @@ export default class Login extends React.PureComponent<any, any> {
 
     submit(e: React.SyntheticEvent<any>) {
         e.preventDefault();
-        const { username, password } = this.state;
-        if(!(username && password)) {
+        const { email, password } = this.state;
+        if(!(email && password)) {
             this.setState({
-                error: 'Invalid username or password'
+                error: 'Invalid email or password'
             });
         } else {
             this.setState({
@@ -48,9 +48,9 @@ export default class Login extends React.PureComponent<any, any> {
                                         <form className='form' onSubmit={this.submit}>
                                             <div className='field'>
                                                 <p className='control'>
-                                                    <input className='input' name='username' placeholder='Username'
-                                                        value={this.state.username} autoFocus={true}
-                                                        onChange={(e) => this.setState({username: e.target.value})} />
+                                                    <input className='input' name='email' placeholder='Email'
+                                                        value={this.state.email} autoFocus={true}
+                                                        onChange={(e) => this.setState({email: e.target.value})} />
                                                 </p>
                                             </div>
                                             <div className='field'>
