@@ -3,6 +3,7 @@ import { Route, Switch, Redirect, RouteProps } from 'react-router-dom';
 
 import Home from './components/Home';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Profile from './components/Profile';
 import NotFound from './components/NotFound';
 
@@ -44,6 +45,7 @@ export const routes = (
     <Switch>
         <PublicRoute authed={authed} exact path='/' component={Home} />
         <PublicRoute authed={authed} path='/login' component={Login} />
+        <PublicRoute authed={authed} path='/signup' component={Signup} />
         <PrivateRoute authed={authed} path='/profile' component={Profile} />
         <PublicRoute authed={authed} component={NotFound} />
     </Switch>
