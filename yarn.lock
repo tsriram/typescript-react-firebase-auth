@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/firebase@^2.4.31":
-  version "2.4.31"
-  resolved "https://registry.yarnpkg.com/@types/firebase/-/firebase-2.4.31.tgz#8a8dfdb602bcd790b99691701f872124a14cd778"
-
 "@types/history@*":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.5.2.tgz#7739c850b7a5de94221accb352f9cabd1bcabe7c"
