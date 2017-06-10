@@ -1,5 +1,20 @@
 import * as React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
 
-const App = () => <div>Test</div>;
+import { routes } from '../routes';
 
-export default App;
+export default class App extends React.PureComponent<any,any> {
+    constructor(props: React.Props<any>) {
+        super(props);
+    }
+
+    render(): any {
+        return (
+            <div>
+                <Router>
+                    {routes}
+                </Router>
+            </div>
+        )
+    }
+}
