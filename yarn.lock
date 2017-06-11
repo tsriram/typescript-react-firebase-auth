@@ -16,6 +16,12 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-gravatar@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@types/react-gravatar/-/react-gravatar-2.6.2.tgz#5e1f0b7f1f9de8d640fc7017800a0092dfa10953"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.0.4.tgz#49f4a7037958f743e764b807fcbc8062fe46e493"
