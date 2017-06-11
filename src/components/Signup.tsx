@@ -8,8 +8,7 @@ export default class Signup extends React.PureComponent<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
+            fullName: '',
             email: '',
             password: '',
             submittig: false,
@@ -22,8 +21,8 @@ export default class Signup extends React.PureComponent<any, any> {
 
     submit(e: React.SyntheticEvent<any>) {
         e.preventDefault();
-        const { firstName, lastName, email, password } = this.state;
-        if(!(firstName && lastName && email && password)) {
+        const { fullName, email, password } = this.state;
+        if(!(fullName &&  email && password)) {
             this.setState({
                 error: 'Invalid email or password'
             });
@@ -31,12 +30,11 @@ export default class Signup extends React.PureComponent<any, any> {
             this.setState({
                 submitting: true
             });
-            auth.createUser(firstName, lastName, email, password)
+            auth.createUser(fullName, email, password)
                 .then((resp) => {
                     this.setState({
                         submitting: false,
-                        firstName: '',
-                        lastName: '',
+                        fullName: '',
                         email: '',
                         password: '',
                         message: 'User registered successfully'
@@ -77,16 +75,9 @@ export default class Signup extends React.PureComponent<any, any> {
                                         <form className='form' onSubmit={this.submit}>
                                             <div className='field'>
                                                 <p className='control'>
-                                                    <input className='input' name='firstName' placeholder='First name'
+                                                    <input className='input' name='fullName' placeholder='Full Name'
                                                         value={this.state.firstName} autoFocus={true} required
-                                                        onChange={(e) => this.setState({firstName: e.target.value})} />
-                                                </p>
-                                            </div>
-                                            <div className='field'>
-                                                <p className='control'>
-                                                    <input className='input' name='lastName' placeholder='Last name'
-                                                        value={this.state.lastName} required
-                                                        onChange={(e) => this.setState({lastName: e.target.value})} />
+                                                        onChange={(e) => this.setState({fullName: e.target.value})} />
                                                 </p>
                                             </div>
                                             <div className='field'>

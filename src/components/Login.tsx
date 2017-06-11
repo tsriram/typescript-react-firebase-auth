@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 const classNames = require('classnames');
 
-import { login } from '../util/auth';
+import { login, loginWithGoogle } from '../util/auth';
 
 export default class Login extends React.PureComponent<any, any> {
     constructor(props: any) {
@@ -93,6 +93,11 @@ export default class Login extends React.PureComponent<any, any> {
                                                 </div>
                                             </div>
                                         </form>
+                                        <div>
+                                            <button className='button is-info is-outlined' onClick={() => loginWithGoogle()}>
+                                                Log in with Google
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

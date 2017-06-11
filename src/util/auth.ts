@@ -1,27 +1,26 @@
-import { db, firebaseAuth } from './constants';
+import { db, firebaseAuth, googleProvider } from './constants';
 import { User } from 'firebase';
 
-export function saveUser(user: any, firstName: string, lastName: string) {
+export function saveUser(user: any, fullName: string = '') {
     return db.child(`users/${user.uid}/info`)
         .set({
-            firstName: firstName,
-            lastName: lastName,
+            fullName: fullName,
             email: user.email,
             uid: user.uid
         })
         .then(() => user);
 }
 
-export function createUser(firstName: string, lastName: string, email: string, password: string) {
+export function createUser(fullName: string, email: string, password: string) {
     return firebaseAuth()
         .createUserWithEmailAndPassword(email, password)
         .then((user: User) => {
             user.updateProfile(({
-                displayName: firstName,
+                displayName: fullName,
                 photoURL: ''
             }))
             .then(() => {
-                saveUser(user, firstName, lastName);
+                saveUser(user, fullName);
             })
         });
 }
@@ -39,4 +38,16 @@ export function logout() {
 export function resetPassword(email: string) {
     return firebaseAuth()
         .sendPasswordResetEmail(email);
+}
+
+export function loginWithGoogle() {
+    return firebaseAuth().signInWithPopup(googleProvider)
+        .then((result) => {
+            const user = result.user;
+            saveUser(user, user.displayName)
+        })
+        .catch((error) => {
+            console.error('error while Google login', error.message);
+            throw error;
+        });
 }
