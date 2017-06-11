@@ -35,16 +35,8 @@ module.exports = {
                 use: ['awesome-typescript-loader']
             },
             {
-                test: /\.scss|sass$/i,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                })
-            },
-            {
                 test: /\.css$/i,
                 use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
                     use: ['css-loader']
                 })
             }

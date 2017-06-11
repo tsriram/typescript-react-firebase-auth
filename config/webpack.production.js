@@ -39,17 +39,14 @@ module.exports = {
                 use: ['awesome-typescript-loader']
             },
             {
-                test: /\.scss|sass$/i,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                })
-            },
-            {
                 test: /\.css$/i,
                 use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader']
+                    use: {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    }
                 })
             }
         ]
@@ -63,7 +60,6 @@ module.exports = {
             filename: 'index.html',
             inject: true
         }),
-        new ExtractTextPlugin('[name].css'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -72,5 +68,6 @@ module.exports = {
                 drop_debugger: true
             }
         }),
+        new ExtractTextPlugin('[name].css'),
     ]
 }
