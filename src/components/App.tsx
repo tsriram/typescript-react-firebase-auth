@@ -52,16 +52,18 @@ export default class App extends React.PureComponent<any,any> {
             )
         }
         return (
-            <div>
-                <Router>
-                    <Switch>
-                        <PublicRoute authed={authed} user={user} exact path='/' component={Home} />
-                        <PublicRoute authed={authed} user={user} path='/login' component={Login} />
-                        <PublicRoute authed={authed} user={user} path='/signup' component={Signup} />
-                        <PrivateRoute authed={authed} user={user} path='/profile' component={Profile} />
-                        <PublicRoute authed={authed} user={user} component={NotFound} />
-                    </Switch>
-                </Router>
+            <div className='hero is-fullheight'>
+                <div className='hero-body'>
+                    <Router>
+                        <Switch>
+                            <PublicRoute authed={authed} user={user} exact path='/' component={Login} />
+                            <PublicRoute authed={authed} user={user} path='/login' component={Login} />
+                            <PublicRoute authed={authed} user={user} path='/signup' component={Signup} />
+                            <PrivateRoute authed={authed} user={user} path='/profile' component={Profile} />
+                            <PublicRoute authed={authed} user={user} component={NotFound} />
+                        </Switch>
+                    </Router>
+                </div>
             </div>
         )
     }

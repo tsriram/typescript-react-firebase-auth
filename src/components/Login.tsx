@@ -45,65 +45,59 @@ export default class Login extends React.PureComponent<any, any> {
             'is-loading': this.state.submitting
         });
         return (
-            <div className='hero is-fullheight'>
-                <div className='hero-body'>
-                    <div className='container has-text-centered'>
-                        <div className='container'>
-                            <div className='columns'>
-                                <div className='column is-half is-offset-one-quarter'>
-                                    <div className='box'>
-                                        <h2 className='title is-2 has-text-centered'>Login</h2>
-                                        <form className='form' onSubmit={this.submit}>
-                                            {
-                                                this.state.error &&
-                                                    <p className='notification is-danger'>
-                                                        {this.state.error}
+            <div className='container has-text-centered'>
+                    <div className='columns'>
+                        <div className='column is-half is-offset-one-quarter'>
+                            <div className='box'>
+                                <h2 className='title is-2 has-text-centered'>Login</h2>
+                                <form className='form' onSubmit={this.submit}>
+                                    {
+                                        this.state.error &&
+                                            <p className='notification is-danger'>
+                                                {this.state.error}
+                                            </p>
+                                    }
+                                    <div className='field'>
+                                        <p className='control'>
+                                            <input className='input' name='email' placeholder='Email'
+                                                value={this.state.email} autoFocus={true} required
+                                                onChange={(e) => this.setState({email: e.target.value})} />
+                                        </p>
+                                    </div>
+                                    <div className='field'>
+                                        <p className='control'>
+                                            <input className='input' type='password' name='password'
+                                                placeholder='Password' value={this.state.password} required
+                                                onChange={(e) => this.setState({password: e.target.value})} />
+                                        </p>
+                                    </div>
+                                    <div className='field'>
+                                        <div className='level'>
+                                            <div className='level-left'>
+                                                <div className='level-item'>
+                                                    <p className='control'>
+                                                        <button className={submitBtnClass}>Login</button>
                                                     </p>
-                                            }
-                                            <div className='field'>
-                                                <p className='control'>
-                                                    <input className='input' name='email' placeholder='Email'
-                                                        value={this.state.email} autoFocus={true}
-                                                        onChange={(e) => this.setState({email: e.target.value})} />
-                                                </p>
-                                            </div>
-                                            <div className='field'>
-                                                <p className='control'>
-                                                    <input className='input' type='password' name='password'
-                                                        placeholder='Password' value={this.state.password}
-                                                        onChange={(e) => this.setState({password: e.target.value})} />
-                                                </p>
-                                            </div>
-                                            <div className='field'>
-                                                <div className='level'>
-                                                    <div className='level-left'>
-                                                        <div className='level-item'>
-                                                            <p className='control'>
-                                                                <button className={submitBtnClass}>Login</button>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div className='level-right'>
-                                                        <div className='level-item'>
-                                                            <p className='control'>
-                                                                <Link to='/signup' className='button is-outlined'>Sign up</Link>
-                                                            </p>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <div>
-                                            <button className='button is-info is-outlined' onClick={() => loginWithGoogle()}>
-                                                Log in with Google
-                                            </button>
+                                            <div className='level-right'>
+                                                <div className='level-item'>
+                                                    <p className='control'>
+                                                        <Link to='/signup' className='button is-outlined'>Sign up</Link>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </form>
+                                <div>
+                                    <button className='button is-info is-outlined' onClick={() => loginWithGoogle()}>
+                                        Log in with Google
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }
