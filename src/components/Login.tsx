@@ -1,6 +1,7 @@
 import * as React from 'react';
-
 const classNames = require('classnames');
+
+import { login } from '../util/auth';
 
 export default class Login extends React.PureComponent<any, any> {
     constructor(props: any) {
@@ -26,7 +27,13 @@ export default class Login extends React.PureComponent<any, any> {
             this.setState({
                 submitting: true
             });
-            // do submit
+            login(email, password)
+                .catch((e) => {
+                    this.setState({
+                        submitting: false,
+                        error: e.message
+                    });
+                })
         }
     }
 
@@ -46,6 +53,12 @@ export default class Login extends React.PureComponent<any, any> {
                                     <div className='box'>
                                         <h2 className='title is-2 has-text-centered'>Login</h2>
                                         <form className='form' onSubmit={this.submit}>
+                                            {
+                                                this.state.error &&
+                                                    <p className='notification is-danger'>
+                                                        {this.state.error}
+                                                    </p>
+                                            }
                                             <div className='field'>
                                                 <p className='control'>
                                                     <input className='input' name='email' placeholder='Email'
