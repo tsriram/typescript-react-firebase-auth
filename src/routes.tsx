@@ -17,7 +17,6 @@ export const PrivateRoute = (props: ExtendedRouteProps) => {
             {...rest}
             render={
                 (rprops) => {
-                    console.log('comp props', props);
                     return authed === true
                         ? <Component {...rprops} {...extraProps} />
                         : <Redirect to={{pathname: '/login', state: {from: props.location}}} />

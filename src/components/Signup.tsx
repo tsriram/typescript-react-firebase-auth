@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import * as auth from '../util/auth';
 const classNames = require('classnames');
@@ -103,9 +104,22 @@ export default class Signup extends React.PureComponent<any, any> {
                                                 </p>
                                             </div>
                                             <div className='field'>
-                                                <p className='control'>
-                                                    <button className={submitBtnClass}>Sign up</button>
-                                                </p>
+                                                <div className='level'>
+                                                    <div className='level-left'>
+                                                        <div className='level-item'>
+                                                            <p className='control'>
+                                                                <button className={submitBtnClass}>Sign up</button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div className='level-right'>
+                                                        <div className='level-item'>
+                                                            <p className='control'>
+                                                                <Link to='/login' className='button is-outlined'>Login</Link>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
