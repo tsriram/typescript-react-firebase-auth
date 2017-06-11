@@ -25,7 +25,9 @@ const getAvatar = (user: User) => {
             <img src={photoURL} style={avatarStyle} />
         )
     } else {
-        <Gravatar email={user.email} style={avatarStyle} />
+        return (
+            <Gravatar email={user.email} style={avatarStyle} size={75} />
+        )
     }
 }
 
@@ -34,12 +36,12 @@ export default function Profile(props: ProfileProps) {
     return (
         <div className='container'>
             <div className='column is-half is-offset-one-quarter'>
-                <div className='box'>
-                    <div className='has-text-centered'>
+                <div className='box has-text-centered'>
+                    <div>
                         {getAvatar(user)}
                     </div>
                     <h3 className='title is-3'>
-                        Hello {user.displayName || user.email}!
+                        {user.displayName || user.email}
                     </h3>
                     <button className='button is-outlined' onClick={() => logout()}>
                         Logout
