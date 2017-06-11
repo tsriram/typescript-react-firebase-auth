@@ -7,6 +7,8 @@ export default class Signup extends React.PureComponent<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
             submittig: false,
@@ -19,8 +21,8 @@ export default class Signup extends React.PureComponent<any, any> {
 
     submit(e: React.SyntheticEvent<any>) {
         e.preventDefault();
-        const { email, password } = this.state;
-        if(!(email && password)) {
+        const { firstName, lastName, email, password } = this.state;
+        if(!(firstName && lastName && email && password)) {
             this.setState({
                 error: 'Invalid email or password'
             });
@@ -28,10 +30,12 @@ export default class Signup extends React.PureComponent<any, any> {
             this.setState({
                 submitting: true
             });
-            auth.createUser(email, password)
+            auth.createUser(firstName, lastName, email, password)
                 .then((resp) => {
                     this.setState({
                         submitting: false,
+                        firstName: '',
+                        lastName: '',
                         email: '',
                         password: '',
                         message: 'User registered successfully'
@@ -72,15 +76,29 @@ export default class Signup extends React.PureComponent<any, any> {
                                         <form className='form' onSubmit={this.submit}>
                                             <div className='field'>
                                                 <p className='control'>
+                                                    <input className='input' name='firstName' placeholder='First name'
+                                                        value={this.state.firstName} autoFocus={true} required
+                                                        onChange={(e) => this.setState({firstName: e.target.value})} />
+                                                </p>
+                                            </div>
+                                            <div className='field'>
+                                                <p className='control'>
+                                                    <input className='input' name='lastName' placeholder='Last name'
+                                                        value={this.state.lastName} required
+                                                        onChange={(e) => this.setState({lastName: e.target.value})} />
+                                                </p>
+                                            </div>
+                                            <div className='field'>
+                                                <p className='control'>
                                                     <input className='input' name='email' placeholder='Email'
-                                                        value={this.state.email} autoFocus={true}
+                                                        value={this.state.email} required
                                                         onChange={(e) => this.setState({email: e.target.value})} />
                                                 </p>
                                             </div>
                                             <div className='field'>
                                                 <p className='control'>
                                                     <input className='input' type='password' name='password'
-                                                        placeholder='Password' value={this.state.password}
+                                                        placeholder='Password' value={this.state.password} required
                                                         onChange={(e) => this.setState({password: e.target.value})} />
                                                 </p>
                                             </div>
