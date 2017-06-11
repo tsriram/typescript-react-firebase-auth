@@ -1,52 +1,45 @@
 import * as React from 'react';
 import { Route, Switch, Redirect, RouteProps } from 'react-router-dom';
+import { User } from 'firebase';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Profile from './components/Profile';
-import NotFound from './components/NotFound';
-
-const authed = false;
-
-interface ExtendedRoute extends RouteProps {
-    authed?: boolean
+export interface ExtendedRouteProps extends RouteProps {
+    authed?: boolean,
+    user?: User
 }
 
-const PrivateRoute = (props: ExtendedRoute) => {
-    const {component: Component, authed, ...rest} = props;
+export const PrivateRoute = (props: ExtendedRouteProps) => {
+    const {component: Component, authed, user, ...rest} = props;
+    const extraProps = {
+        user
+    };
     return (
         <Route
             {...rest}
             render={
-                (props) => authed === true
-                    ? <Component {...props} />
-                    : <Redirect to={{pathname: '/login', state: {from: props.location}}} />
+                (rprops) => {
+                    console.log('comp props', props);
+                    return authed === true
+                        ? <Component {...rprops} {...extraProps} />
+                        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />
+                }
             }
         />
     )
 }
 
-const PublicRoute = (props: ExtendedRoute) => {
-    const {component: Component, authed, ...rest} = props;
+export const PublicRoute = (props: ExtendedRouteProps) => {
+    const {component: Component, authed, user, ...rest} = props;
+    const extraProps = {
+        user
+    };
     return (
         <Route
             {...rest}
             render={
                 (props) => authed === false
-                    ? <Component {...props} />
+                    ? <Component {...props} {...extraProps} />
                     : <Redirect to='/profile' />
             }
         />
     )
 }
-
-export const routes = (
-    <Switch>
-        <PublicRoute authed={authed} exact path='/' component={Home} />
-        <PublicRoute authed={authed} path='/login' component={Login} />
-        <PublicRoute authed={authed} path='/signup' component={Signup} />
-        <PrivateRoute authed={authed} path='/profile' component={Profile} />
-        <PublicRoute authed={authed} component={NotFound} />
-    </Switch>
-)

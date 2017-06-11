@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as auth from '../util/auth';
 const classNames = require('classnames');
 
 export default class Signup extends React.PureComponent<any, any> {
@@ -9,7 +10,8 @@ export default class Signup extends React.PureComponent<any, any> {
             email: '',
             password: '',
             submittig: false,
-            error: null
+            error: null,
+            message: null
         }
 
         this.submit = this.submit.bind(this);
@@ -26,7 +28,21 @@ export default class Signup extends React.PureComponent<any, any> {
             this.setState({
                 submitting: true
             });
-            // do submit
+            auth.createUser(email, password)
+                .then((resp) => {
+                    this.setState({
+                        submitting: false,
+                        email: '',
+                        password: '',
+                        message: 'User registered successfully'
+                    });
+                })
+                .catch((error) => {
+                    this.setState({
+                        submitting: false,
+                        error: error.message || 'Error while signing up'
+                    });
+                })
         }
     }
 
@@ -45,6 +61,14 @@ export default class Signup extends React.PureComponent<any, any> {
                                 <div className='column is-half is-offset-one-quarter'>
                                     <div className='box'>
                                         <h2 className='title is-2 has-text-centered'>Sign up</h2>
+                                        {
+                                            this.state.error &&
+                                                <p className='notification is-danger'>{this.state.error}</p>
+                                        }
+                                        {
+                                            this.state.message &&
+                                                <p className='notification is-success'>{this.state.message}</p>
+                                        }
                                         <form className='form' onSubmit={this.submit}>
                                             <div className='field'>
                                                 <p className='control'>
